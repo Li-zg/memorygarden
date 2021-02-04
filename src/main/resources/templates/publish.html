@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:background="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>永恒记忆花园</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/garden.css">
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">记忆花园</span>
+            </button>
+            <a class="navbar-brand" href="/">记忆花园</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="寻找记忆">
+                </div>
+                <button type="submit" class="btn btn-default">回忆</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" th:if="${session.user!=null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" th:text="${session.user.getName()}">
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">消息中心</a></li>
+                        <li><a href="#">个人花园</a></li>
+                        <li><a href="#">离开花园</a></li>
+                    </ul>
+                </li>
+                <li th:if="${session.user==null}">
+                    <a href="https://github.com/login/oauth/authorize?client_id=4adb67f3c6fb88caff6c&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题</label>
+                    <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="问题标题...">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题补充</label>
+                    <textarea name="description" id="description" class="form-control" th:text="${description}" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签,请以逗号分隔">
+                </div>
+
+                <div class="container-fluid main">
+                    <div class="row">
+                        <div class="alert alert-danger publish-alert col-lg-9 col-md-12 col-sm-12 col-xs-12" role="alert"
+                             th:text="${error}" th:if="${error != null}"></div>
+                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
+                        <button type="submit" class="btn-publish ">发布</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h2>提问指南</h2>
+            1.问题标题 简短描述问题 <br>
+            2.问题补充 仔细说明问题<br>
+            3.选择标签 给问题分类，以逗号隔开<br>
+        </div>
+    </div>
+</div>
+</body>
+</html>

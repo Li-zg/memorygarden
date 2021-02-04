@@ -1,0 +1,53 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(../img/fox.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+#bigBox{
+    margin: 0 auto;
+    margin-top: 200px;
+    padding: 20px 50px;
+    background-color: #00000090;
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#bigBox h1{
+    color: white;
+}
+
+#bigBox .inputBox{
+    margin-top: 50px;
+}
+
+#bigBox .inputBox .inputText{
+    margin-top: 20px;
+}
+
+#bigBox .inputBox .inputText span{
+    color: white;
+}
+
+#bigBox .inputBox .inputText input{
+    border: 0;
+    padding: 10px 10px;
+    border-bottom: 1px solid white;
+    background-color: #00000000;
+    color: white;
+}
+
+#bigBox .inputbutton {
+    border: 0;
+    width: 150px;
+    height: 25px;
+    color: white;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
+}
