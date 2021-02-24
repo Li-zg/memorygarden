@@ -5,7 +5,7 @@
 [Spring web](https://spring.io/guides/gs/serving-web-content/)
 [Github OAuth](https://docs.github.com/en/developers/apps/building-oauth-apps)
 [Spring boot Mybatis](http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
-[Spring 官方文档](https://docs.spring.io/spring-boot/docs/)
+[Spring 官方文档](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/)
 [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
 
 ##工具
