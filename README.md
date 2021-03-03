@@ -7,6 +7,7 @@
 [Spring boot Mybatis](http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
 [Spring 官方文档](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/)
 [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
+[Mybatis Generator](https://mybatis.org/generator/)
 
 ##工具
 [Git](https://git-scm.com/download)
@@ -28,4 +29,5 @@ create table USER
 
 ```bash
 mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```
