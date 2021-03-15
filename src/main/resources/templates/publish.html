@@ -13,7 +13,7 @@
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main">
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 text-pad">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
             <hr>
             <form action="/publish" method="post">
@@ -31,7 +31,7 @@
                     <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签,请以逗号分隔">
                 </div>
 
-                <div class="container-fluid main">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="alert alert-danger publish-alert col-lg-9 col-md-12 col-sm-12 col-xs-12" role="alert"
                              th:text="${error}" th:if="${error != null}"></div>
@@ -41,7 +41,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 text-relative-pad">
             <h2>提问指南</h2>
             1.问题标题 简短描述问题 <br>
             2.问题补充 仔细说明问题<br>

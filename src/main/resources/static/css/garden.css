@@ -1,33 +1,31 @@
 body{
-    margin: 0;
-    padding: 0;
-    background-image: url(../img/kon.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
+   background-color: #efefef;
 }
 .main{
-    margin-top: 70px;
-    padding: 20px 50px;
+    margin:30px;
     border-radius: 20px;
-    background-color:rgba(0,0,0,0);
+    background-color:white;
 }
 
 .publish-alert{
-    margin-top: -50px;
+    float:left;
     border: 0;
     color: white;
     background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 }
 .btn-publish{
     float:right;
+    margin-bottom: 15px;
     border: 0;
     width: 60px;
     height: 35px;
     color: white;
-    margin-top: -50px;
-    border-radius: 10px;
-    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    border-radius: 5px;
+    background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+}
+
+.list-group{
+    margin: 30px;
 }
 
 .media-object{
@@ -44,4 +42,61 @@ body{
 .question-edit{
     color: #999;
     font-size: 13px;
+}
+
+.media-body{
+    padding: 10px;
+}
+
+.comment{
+    margin: 10px 0;
+}
+
+.btn-comment{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    float: right;
+    border: none;
+    background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+}
+
+.comment-sp{
+    margin-top: 0;
+}
+
+.comments{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #999999;
+}
+
+.sec-comment{
+    padding-top: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid;
+    margin-bottom: 15px;
+}
+
+.menu{
+    color: #999;
+    margin-top: 5px;
+}
+
+.menu .icon{
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.menu .icon:hover{
+    color: #2aabd2;
+}
+
+.text-pad{
+    padding-left: 40px;
+    padding-top: 15px;
+}
+
+.text-relative-pad{
+    padding-top: 30px;
 }
