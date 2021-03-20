@@ -4,10 +4,7 @@ import life.lieren.memorygarden.dto.CommentDTO;
 import life.lieren.memorygarden.enums.CommentTypeEnum;
 import life.lieren.memorygarden.exception.CustomizeErrorCode;
 import life.lieren.memorygarden.exception.CustomizeException;
-import life.lieren.memorygarden.mapper.CommentMapper;
-import life.lieren.memorygarden.mapper.QuestionExtMapper;
-import life.lieren.memorygarden.mapper.QuestionMapper;
-import life.lieren.memorygarden.mapper.UserMapper;
+import life.lieren.memorygarden.mapper.*;
 import life.lieren.memorygarden.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,11 @@ public class CommentService {
     private QuestionExtMapper questionExtMapper;
 
     @Autowired
+    private CommentExtMapper commentExtMapper;
+
+    @Autowired
     private UserMapper userMapper;
+
 
     @Transactional
     public void insert(Comment comment) {
@@ -50,6 +51,9 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+            //评论的回复数
+            dbComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(dbComment);
         } else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -57,6 +61,7 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
             commentMapper.insert(comment);
+            //问题的评论数
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
         }

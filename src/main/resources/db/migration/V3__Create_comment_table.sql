@@ -7,5 +7,6 @@ CREATE TABLE COMMENT
     gmt_create BIGINT NOT NULL,
     gmt_modified BIGINT NOT NULL,
     like_count BIGINT DEFAULT 0,
-    content VARCHAR(1024) NOT NULL
+    content VARCHAR(1024) NOT NULL,
+    comment_count int default 0 NOT NULL
 );

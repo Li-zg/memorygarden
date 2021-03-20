@@ -24,6 +24,11 @@ body{
     background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
 }
 
+.publish-tag-tab{
+    display: none;
+    margin-top: 5px;
+}
+
 .list-group{
     margin: 30px;
 }
@@ -37,6 +42,15 @@ body{
     font-size: 12px;
     font-weight: normal;
     color: #999999;
+}
+
+.question-tag{
+    margin-right: 10px;
+    background-color: cornflowerblue;
+}
+
+.label-tag{
+    background-color: cornflowerblue;
 }
 
 .question-edit{
@@ -60,8 +74,14 @@ body{
     background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
 }
 
-.comment-sp{
+.comment-sp-t0 {
     margin-top: 0;
+    border-top: 1px solid grey;
+}
+
+.comment-sp-b0{
+    margin-bottom: 0;
+    border-top: 1px solid grey;
 }
 
 .comments{
@@ -88,8 +108,13 @@ body{
     font-size: 17px;
 }
 
-.menu .icon:hover{
-    color: #2aabd2;
+.menu .icon:hover {
+    color: #499ef3;
+}
+
+.counts{
+    font-size: 13px;
+    margin-left: -4px;
 }
 
 .text-pad{
@@ -99,4 +124,14 @@ body{
 
 .text-relative-pad{
     padding-top: 30px;
+}
+
+.related-questions{
+    margin-left: 0px;
+    margin-top: 20px;
+    color: cornflowerblue;
+}
+
+.question-wechat{
+    width: 80%;
 }
