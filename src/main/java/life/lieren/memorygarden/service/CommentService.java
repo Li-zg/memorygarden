@@ -2,6 +2,8 @@ package life.lieren.memorygarden.service;
 
 import life.lieren.memorygarden.dto.CommentDTO;
 import life.lieren.memorygarden.enums.CommentTypeEnum;
+import life.lieren.memorygarden.enums.NotificationEnum;
+import life.lieren.memorygarden.enums.NotificationStatusEnum;
 import life.lieren.memorygarden.exception.CustomizeErrorCode;
 import life.lieren.memorygarden.exception.CustomizeException;
 import life.lieren.memorygarden.mapper.*;
@@ -35,6 +37,8 @@ public class CommentService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private NotificationMapper notificationMapper;
 
     @Transactional
     public void insert(Comment comment) {
@@ -54,6 +58,8 @@ public class CommentService {
             //评论的回复数
             dbComment.setCommentCount(1);
             commentExtMapper.incCommentCount(dbComment);
+            //创建通知
+            createNotify(comment, dbComment.getCommentator(), NotificationEnum.REPLY_COMMENT);
         } else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -64,7 +70,20 @@ public class CommentService {
             //问题的评论数
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
+            //创建通知
+            createNotify(comment,question.getCreator(), NotificationEnum.REPLY_QUESTION);
         }
+    }
+
+    private void createNotify(Comment comment, Long receiver, NotificationEnum notificationType) {
+        Notification notification = new Notification();
+        notification.setGmtcreate(System.currentTimeMillis());
+        notification.setType(notificationType.getType());
+        notification.setOuterid(comment.getParentId());
+        notification.setNotifier(comment.getCommentator());
+        notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+        notification.setReciever(receiver);
+        notificationMapper.insert(notification);
     }
 
     public List<CommentDTO> listByParentId(Long id, CommentTypeEnum type) {

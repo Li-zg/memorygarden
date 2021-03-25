@@ -1,10 +1,13 @@
 body{
-   background-color: #efefef;
+    background-color: #efefef;
 }
 .main{
     margin:30px;
     border-radius: 20px;
     background-color:white;
+    /*background-image:url("../img/fox.jpg");*/
+    /*background-size: cover;*/
+    /*overflow: hidden*/
 }
 
 .publish-alert{
@@ -27,6 +30,14 @@ body{
 .publish-tag-tab{
     display: none;
     margin-top: 5px;
+}
+
+.publish-tag-tab .label-info{
+    white-space: normal;
+    margin-right: 10px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .list-group{
@@ -56,6 +67,10 @@ body{
 .question-edit{
     color: #999;
     font-size: 13px;
+}
+
+#home-questions-edit{
+    margin-left: 60px;
 }
 
 .media-body{
@@ -134,4 +149,9 @@ body{
 
 .question-wechat{
     width: 80%;
+}
+
+.badge{
+    margin-bottom: 3px;
+    margin-left: 3px;
 }

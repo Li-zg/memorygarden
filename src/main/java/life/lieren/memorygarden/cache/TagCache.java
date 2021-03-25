@@ -12,7 +12,7 @@ public class TagCache {
 
         TagDTO tag_pool1 = new TagDTO();
         tag_pool1.setCategoryName("开发框架");
-        tag_pool1.setTags(Arrays.asList("1","7"));
+        tag_pool1.setTags(Arrays.asList("1","7","fas","das","dasf",",","dsafafq","grgqew","gfj","dasfgfrjwfur","==========","dgsayfaj","dasgfasggfagkfg","hello","+++++++++++++++++++++++++++++++++++++++++++++"));
         tagDTOS.add(tag_pool1);
 
 

@@ -36,7 +36,7 @@
                    </span>
                     <hr class="comment-sp-t0">
                 </div>
-
+                <!--编辑-->
                 <a th:href="@{'/publish/'+${question.id}}" class="question-edit"
                    th:if="${session.user!=null && session.user.id==question.creator}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>

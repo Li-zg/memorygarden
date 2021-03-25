@@ -117,7 +117,8 @@ function showSelectTag() {
     $("#select-tag").show();
 }
 
-function selectTag(value) {
+function selectTag(e) {
+    var value = e.getAttribute("data-tag");
     var previous = $("#tag").val();
     var pre_tag =$("#tag").val().split(",");
     if (pre_tag.indexOf(value)==-1){
