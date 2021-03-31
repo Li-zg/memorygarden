@@ -2,7 +2,7 @@ package life.lieren.memorygarden.service;
 
 import life.lieren.memorygarden.dto.CommentDTO;
 import life.lieren.memorygarden.enums.CommentTypeEnum;
-import life.lieren.memorygarden.enums.NotificationEnum;
+import life.lieren.memorygarden.enums.NotificationTypeEnum;
 import life.lieren.memorygarden.enums.NotificationStatusEnum;
 import life.lieren.memorygarden.exception.CustomizeErrorCode;
 import life.lieren.memorygarden.exception.CustomizeException;
@@ -41,7 +41,7 @@ public class CommentService {
     private NotificationMapper notificationMapper;
 
     @Transactional
-    public void insert(Comment comment) {
+    public void insert(Comment comment, User commentator) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
         }
@@ -54,12 +54,19 @@ public class CommentService {
             if (dbComment == null) {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
+
+            //回复问题
+            Question question = questionMapper.selectByPrimaryKey(dbComment.getParentId());
+            if (question == null) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
             commentMapper.insert(comment);
             //评论的回复数
             dbComment.setCommentCount(1);
             commentExtMapper.incCommentCount(dbComment);
+
             //创建通知
-            createNotify(comment, dbComment.getCommentator(), NotificationEnum.REPLY_COMMENT);
+            createNotify(comment, dbComment.getCommentator(), commentator.getName(), question.getTitle(), NotificationTypeEnum.REPLY_COMMENT, question.getId());
         } else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -71,18 +78,20 @@ public class CommentService {
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
             //创建通知
-            createNotify(comment,question.getCreator(), NotificationEnum.REPLY_QUESTION);
+            createNotify(comment,question.getCreator(), commentator.getName(),question.getTitle(), NotificationTypeEnum.REPLY_QUESTION, question.getId());
         }
     }
 
-    private void createNotify(Comment comment, Long receiver, NotificationEnum notificationType) {
+    private void createNotify(Comment comment, Long receiver, String notifierName, String outerTitle, NotificationTypeEnum notificationType, Long outerId) {
         Notification notification = new Notification();
-        notification.setGmtcreate(System.currentTimeMillis());
+        notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(notificationType.getType());
-        notification.setOuterid(comment.getParentId());
+        notification.setOuterid(outerId);
         notification.setNotifier(comment.getCommentator());
         notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
         notification.setReciever(receiver);
+        notification.setOuterTitle(outerTitle);
+        notification.setNotifierName(notifierName);
         notificationMapper.insert(notification);
     }
 

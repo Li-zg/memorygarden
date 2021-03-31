@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/garden.css">
+    <link rel="stylesheet" href="/css/editormd.min.css" />
     <script src="/js/jquery-3.5.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/memorygarden.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -24,31 +26,50 @@
                     <input type="text" class="form-control" th:value="${title}" id="title" name="title"
                            placeholder="问题标题...">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="question-editor">
                     <label for="description">问题补充</label>
-                    <textarea name="description" id="description" class="form-control" th:text="${description}"
-                              cols="30" rows="10"></textarea>
+                    <textarea name="description"
+                              id="description"
+                              class="form-control"
+                              style="display:none;"
+                              th:text="${description}"
+                              cols="30" rows="10">
+                    </textarea>
                 </div>
+                <script type="text/javascript">
+                    $(function () {
+                        var editor = editormd("question-editor", {
+                            width  : "100%",
+                            height : 350,
+                            path: "/js/lib/",
+                            delay: 0,
+                            watch: false,
+                            placeholder: "请输入问题描述"
+                        });
+                    });
+                </script>
                 <div class="form-group">
                     <label for="tag">添加标签</label>
                     <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag"
-                            autocomplete="off"
-                            placeholder="输入标签,请以逗号分隔"
-                            onclick="showSelectTag()">
+                           autocomplete="off"
+                           placeholder="输入标签,请以逗号分隔"
+                           onclick="showSelectTag()">
 
                     <!-- 标签栏 -->
                     <div id="select-tag" class="publish-tag-tab">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" th:each = "selectCategory:${stags}">
+                            <li role="presentation" th:each="selectCategory:${stags}">
                                 <a th:href="${'#'+ selectCategory.categoryName}" aria-controls="home" role="tab"
                                    data-toggle="tab" th:text="${selectCategory.categoryName}"></a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade" th:id="${selectCategory.categoryName}" th:each="selectCategory:${stags}">
+                            <div role="tabpanel" class="tab-pane fade" th:id="${selectCategory.categoryName}"
+                                 th:each="selectCategory:${stags}">
                                 <span class="label label-info question-tag" th:each="selectTag:${selectCategory.tags}">
                                     <span class="glyphicon glyphicon-tag"></span>
-                                    <span class="label label-info label-tag" onclick="selectTag(this)" th:data-tag="${selectTag}" th:text="${selectTag}">
+                                    <span class="label label-info label-tag" onclick="selectTag(this)"
+                                          th:data-tag="${selectTag}" th:text="${selectTag}">
                                     </span>
                                 </span>
                             </div>

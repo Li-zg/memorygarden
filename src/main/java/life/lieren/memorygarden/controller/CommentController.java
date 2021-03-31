@@ -24,13 +24,13 @@ public class CommentController {
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
-                       HttpServletRequest request){
+                       HttpServletRequest request) {
 
         User user = (User) request.getSession().getAttribute("user");
-        if(user == null){
+        if (user == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NOT_LOGIN);
         }
-        if(commentCreateDTO==null||commentCreateDTO.getContent()==null||commentCreateDTO.getContent()==""){
+        if (commentCreateDTO == null || commentCreateDTO.getContent() == null || commentCreateDTO.getContent() == "") {
             return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
         }
         Comment comment = new Comment();
@@ -42,13 +42,13 @@ public class CommentController {
         comment.setCommentator(user.getId());
         comment.setLikeCount(0L);
         comment.setCommentCount(0);
-        commentService.insert(comment);
+        commentService.insert(comment, user);
         return ResultDTO.okOf();
     }
 
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
-    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Long id){
+    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Long id) {
         List<CommentDTO> commentDTOS = commentService.listByParentId(id, CommentTypeEnum.COMMENT);
         return ResultDTO.okOf(commentDTOS);
     }

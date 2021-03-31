@@ -33,7 +33,7 @@ public class QuestionService {
     private QuestionExtMapper questionExtMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
-        PaginationDTO paginationDTO = new PaginationDTO();
+        PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO();
         Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
         //判断总共页数
         if (totalCount % size == 0) {
@@ -63,7 +63,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOList);
+        paginationDTO.setData(questionDTOList);
         return paginationDTO;
     }
 
@@ -103,7 +103,7 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOList);
+        paginationDTO.setData(questionDTOList);
         return paginationDTO;
     }
 
@@ -150,7 +150,7 @@ public class QuestionService {
         Question question = new Question();
         question.setId(id);
         question.setViewCount(1);
-        //累计评论数(应对高并发)
+        //累计评论数(应对并发)
         questionExtMapper.incView(question);
     }
 

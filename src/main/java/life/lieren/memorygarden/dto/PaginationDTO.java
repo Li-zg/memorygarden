@@ -7,8 +7,8 @@ import java.util.List;
 
 //一般开发前端在js中完成，这里通过后端简单实现
 @Data
-public class PaginationDTO {
-    private List<QuestionDTO> questions;
+public class PaginationDTO<T> {
+    private List<T> data;
     //按钮
     private boolean showPrevious;
     private boolean showFirstPage;

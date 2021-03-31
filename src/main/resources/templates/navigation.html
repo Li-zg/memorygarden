@@ -26,7 +26,7 @@
                     <li th:if="${session.user!=null}">
                         <a href="/publish">提问</a>
                     </li>
-                    <li><a href="/profile/replies">消息<span class="badge">14</span></a>
+                    <li><a href="/profile/replies">消息<span class="badge" th:text="${session.unreadCount}"></span></a>
                     </li>
 
                     <li class="dropdown" th:if="${session.user!=null}">
