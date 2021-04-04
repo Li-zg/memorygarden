@@ -9,6 +9,8 @@
 ##阿里云Linux安装步骤
 - yum upstate
 - yum install git
+- mkdir App
+- cd App
 
 ##资料
 [Bootstrap 文档](https://v3.bootcss.com/getting-started/)
