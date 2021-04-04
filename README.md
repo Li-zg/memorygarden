@@ -1,6 +1,15 @@
 记忆花园
 ==
 
+##依赖
+- Git
+- JDK
+- Maven
+- MySQL
+##阿里云Linux安装步骤
+- yum upstate
+- yum install git
+
 ##资料
 [Bootstrap 文档](https://v3.bootcss.com/getting-started/)
 
