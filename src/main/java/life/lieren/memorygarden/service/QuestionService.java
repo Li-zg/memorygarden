@@ -32,7 +32,13 @@ public class QuestionService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search, Integer page, Integer size) {
+
+        if (StringUtils.isNotBlank(search)){
+            String[] words = StringUtils.split(search, "|");
+            search = Arrays.stream(words).collect(Collectors.joining("|"));
+        }
+
         PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO();
         Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
         //判断总共页数
