@@ -11,7 +11,13 @@
 - yum install git
 - mkdir App
 - cd App
-
+- git clone https://github.com/Li-zg/memorygarden.git
+- yum install maven
+- mvn -v
+- mvn clean compile package
+- cp src/main/resources/application.properties src/main/resources/application-production.properties
+- vim src/main/resources/application-production.properties
+- java -jar -Dspring.profiles.active=production memorygarden-0.0.1-SNAPSHOT.jar
 ##资料
 [Bootstrap 文档](https://v3.bootcss.com/getting-started/)
 

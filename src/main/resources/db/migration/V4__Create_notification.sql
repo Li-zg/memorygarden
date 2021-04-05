@@ -6,5 +6,7 @@ CREATE TABLE notification
     outerid BIGINT NOT NULL,
     type int NOT NULL,
     gmtCreate BIGINT NOT NULL,
-    type int DEFAULT 0 NOT NULL
+    status int DEFAULT 0 NOT NULL,
+    notifier_name VARCHAR(100) NOT NULL,
+    outer_title VARCHAR(256) NOT NULL
 );
