@@ -17,7 +17,11 @@
 - mvn clean compile package
 - cp src/main/resources/application.properties src/main/resources/application-production.properties
 - vim src/main/resources/application-production.properties
-- java -jar -Dspring.profiles.active=production memorygarden-0.0.1-SNAPSHOT.jar
+- java -jar -Dspring.profiles.active=production target/memorygarden-0.0.1-SNAPSHOT.jar
+######java进程查看
+- ps -axu | grep java
+
+
 ##资料
 [Bootstrap 文档](https://v3.bootcss.com/getting-started/)
 
