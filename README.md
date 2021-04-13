@@ -11,7 +11,8 @@
 - yum install git
 - mkdir App
 - cd App
-- git clone https://github.com/Li-zg/memorygarden.git
+- git clone https://github.com/Li-zg/memorygarden.git    
+- git clone git://github.com/Li-zg/memorygarden.git
 - yum install maven
 - mvn -v
 - mvn clean compile package
@@ -20,7 +21,16 @@
 - java -jar -Dspring.profiles.active=production target/memorygarden-0.0.1-SNAPSHOT.jar
 ######java进程查看
 - ps -axu | grep java
-
+##部署后脱机运行项目
+- yum install coreutils
+- vi ~/.bash_profile 
+######进入此文件后，在PATH=$PATH:$HOME/bin添加:/usr/bin
+- source ~/.bash_profile 
+- touch memorygarden.sh
+- vi memorygarden.sh
+######编辑创建的脚本文件 内容为"# !/bin/sh nohup java -jar -Dspring.profiles.active=production target/memorygarden-0.0.1-SNAPSHOT.jar &"
+######执行脚本文件 
+- sh bili.sh
 
 ##资料
 [Bootstrap 文档](https://v3.bootcss.com/getting-started/)
