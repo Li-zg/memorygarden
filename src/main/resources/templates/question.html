@@ -76,8 +76,10 @@
                         </h5>
                         <div th:text="${comment.content}"></div>
                         <div class="menu">
-                            <span class="iconfont icon-good icon"></span>
-
+                            <span class="iconfont icon-good icon" th:data-id="${comment.id}"
+                                  onclick="addLikeCounts(this)">
+                                <span class="likeCounts" th:text="${comment.likeCount}"></span>
+                            </span>
                             <span class="iconfont icon-comment icon" th:data-id="${comment.id}"
                                   onclick="collapseComments(this)">
                                 <span class="counts" th:text="${comment.commentCount}"></span>

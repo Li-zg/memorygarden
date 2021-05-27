@@ -4,8 +4,6 @@ import life.lieren.memorygarden.exception.CustomizeErrorCode;
 import life.lieren.memorygarden.exception.CustomizeException;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 public class ResultDTO<T> {
     private Integer code;

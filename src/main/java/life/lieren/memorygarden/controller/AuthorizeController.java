@@ -2,7 +2,6 @@ package life.lieren.memorygarden.controller;
 
 import life.lieren.memorygarden.dto.AccessTokenDTO;
 import life.lieren.memorygarden.dto.GithubUser;
-import life.lieren.memorygarden.mapper.UserMapper;
 import life.lieren.memorygarden.model.User;
 import life.lieren.memorygarden.provider.GithubProvider;
 import life.lieren.memorygarden.service.UserService;

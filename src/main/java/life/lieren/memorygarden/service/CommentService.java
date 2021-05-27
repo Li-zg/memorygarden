@@ -128,4 +128,12 @@ public class CommentService {
         }).collect(Collectors.toList());
         return commentDTOS;
     }
+    public void addLikeCount(Long id){
+        Comment dbComment = commentMapper.selectByPrimaryKey(id);
+        if (dbComment == null) {
+            throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
+        }
+        dbComment.setLikeCount(1L);
+        commentExtMapper.addLikeCount(dbComment);
+    }
 }

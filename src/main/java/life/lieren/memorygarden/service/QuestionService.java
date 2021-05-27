@@ -2,6 +2,7 @@ package life.lieren.memorygarden.service;
 
 import life.lieren.memorygarden.dto.PaginationDTO;
 import life.lieren.memorygarden.dto.QuestionDTO;
+import life.lieren.memorygarden.dto.QuestionQueryDTO;
 import life.lieren.memorygarden.exception.CustomizeErrorCode;
 import life.lieren.memorygarden.exception.CustomizeException;
 import life.lieren.memorygarden.mapper.QuestionExtMapper;
@@ -35,12 +36,15 @@ public class QuestionService {
     public PaginationDTO list(String search, Integer page, Integer size) {
 
         if (StringUtils.isNotBlank(search)){
-            String[] words = StringUtils.split(search, "|");
+            String[] words = StringUtils.split(search, " ");
             search = Arrays.stream(words).collect(Collectors.joining("|"));
         }
 
         PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO();
-        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
+
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         //判断总共页数
         if (totalCount % size == 0) {
             paginationDTO.setTotalPage(totalCount / size);
@@ -59,7 +63,9 @@ public class QuestionService {
         Integer offset = size * (page - 1);
         QuestionExample questionExample = new QuestionExample();
         questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
+        questionQueryDTO.setPage(offset);
+        questionQueryDTO.setSize(size);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {

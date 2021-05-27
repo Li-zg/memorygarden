@@ -1,5 +1,6 @@
 package life.lieren.memorygarden.mapper;
 
+import life.lieren.memorygarden.dto.QuestionQueryDTO;
 import life.lieren.memorygarden.model.Question;
 import life.lieren.memorygarden.model.QuestionExample;
 import org.apache.ibatis.annotations.Param;
@@ -13,4 +14,8 @@ public interface QuestionExtMapper {
     int incCommentCount(Question record);
 
     List<Question> selectRelated(Question question);
+
+    Integer countBySearch(QuestionQueryDTO questionQueryDTO);
+
+    List<Question> selectBySearch(QuestionQueryDTO questionQueryDTO);
 }

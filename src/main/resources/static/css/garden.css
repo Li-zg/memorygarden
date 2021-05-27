@@ -127,6 +127,11 @@ body{
     color: #499ef3;
 }
 
+.likeCounts{
+    font-size: 13px;
+    margin-left: -4px;
+}
+
 .counts{
     font-size: 13px;
     margin-left: -4px;

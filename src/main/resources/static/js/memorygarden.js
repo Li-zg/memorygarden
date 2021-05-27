@@ -129,3 +129,17 @@ function selectTag(e) {
         }
     }
 }
+
+function addLikeCounts(e) {
+    var id = e.getAttribute("data-id");//获取想要点赞的评论的id
+    $.ajax({
+        type: "GET",
+        url: "/comment/addLikeCount/"+id,
+        contentType: "application/json",
+        success: function (response) {
+            if (response.code == 200) {
+                window.location.reload();
+            }
+        },
+    });
+}

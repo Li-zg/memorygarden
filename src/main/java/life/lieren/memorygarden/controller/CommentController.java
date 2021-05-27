@@ -53,4 +53,11 @@ public class CommentController {
         return ResultDTO.okOf(commentDTOS);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/comment/addLikeCount/{id}", method = RequestMethod.GET)
+    public Object addLikeCount(@PathVariable(name = "id") Long id) {
+        commentService.addLikeCount(id);
+        return ResultDTO.okOf();
+    }
+
 }
